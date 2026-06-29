@@ -8,10 +8,19 @@ if config_env() == :prod do
       For example: ecto://USER:PASS@HOST/DATABASE
       """
 
-  config :trello_clone, TrelloClone.Repo,
+  repo_opts = [
     url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-    ssl: true
+    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+  ]
+
+  repo_opts =
+    if String.contains?(database_url, "render.com") do
+      Keyword.put(repo_opts, :ssl, true)
+    else
+      repo_opts
+    end
+
+  config :trello_clone, TrelloClone.Repo, repo_opts
 
   secret_key_base =
     System.get_env("SECRET_KEY_BASE") ||

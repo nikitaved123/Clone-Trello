@@ -1,0 +1,19 @@
+config_version = "0"
+
+exclude_patterns = [
+  "priv/static/assets/**",
+  "priv/static/index.html",
+  "**/package-lock.json",
+  "**/node_modules/**",
+  "_build/**",
+  "deps/**",
+]
+
+test_patterns = [
+  "**/test/**",
+  "**/*_test.exs",
+]
+
+[[source]]
+name = "default"
+default = true

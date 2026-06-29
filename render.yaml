@@ -5,15 +5,11 @@ services:
     plan: free
     repo: https://github.com/nikitaved123/Clone-Trello
     branch: main
-    buildCommand: >-
-      cd client && npm ci && npm run build && cd ..
-      && mix deps.get --only prod
-      && MIX_ENV=prod mix compile
-      && MIX_ENV=prod mix release
+    buildCommand: ./build.sh
     startCommand: >-
       _build/prod/rel/trello_clone/bin/trello_clone eval TrelloClone.Release.migrate
       && _build/prod/rel/trello_clone/bin/trello_clone eval TrelloClone.Release.seed
-      && _build/prod/rel/trello_clone/bin/trello_clone start
+      && _build/prod/rel/trello_clone/bin/server
     healthCheckPath: /api/health
     envVars:
       - key: DATABASE_URL
@@ -24,6 +20,12 @@ services:
         generateValue: true
       - key: POOL_SIZE
         value: "5"
+      - key: PHX_SERVER
+        value: "true"
+      - key: ELIXIR_VERSION
+        value: "1.16.3"
+      - key: ERLANG_VERSION
+        value: "26.2.5"
 
 databases:
   - name: trello-clone-db

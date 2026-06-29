@@ -101,7 +101,7 @@ erDiagram
 
 ## 5.6 Качество кода
 
-Бейдж Code Climate в README.md (оценка A или B).
+Бейдж maintainability (Qlty, преемник Code Climate) в README.md — оценка A или B.
 
 ## 5.7 Вывод по практике
 

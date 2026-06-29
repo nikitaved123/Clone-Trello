@@ -5,7 +5,8 @@ defmodule TrelloCloneWeb.Endpoint do
     store: :cookie,
     key: "_trello_clone_key",
     signing_salt: "trello_clone_signing",
-    same_site: "Lax"
+    same_site: "Lax",
+    secure: Mix.env() == :prod
   ]
 
   socket "/socket", TrelloCloneWeb.UserSocket,

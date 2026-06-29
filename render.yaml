@@ -9,7 +9,7 @@ services:
     startCommand: >-
       _build/prod/rel/trello_clone/bin/trello_clone eval TrelloClone.Release.migrate
       && _build/prod/rel/trello_clone/bin/trello_clone eval TrelloClone.Release.seed
-      && _build/prod/rel/trello_clone/bin/server
+      && _build/prod/rel/trello_clone/bin/trello_clone start
     healthCheckPath: /api/health
     envVars:
       - key: DATABASE_URL
@@ -22,10 +22,6 @@ services:
         value: "5"
       - key: PHX_SERVER
         value: "true"
-      - key: ELIXIR_VERSION
-        value: "1.16.3"
-      - key: ERLANG_VERSION
-        value: "26.2.5"
 
 databases:
   - name: trello-clone-db
